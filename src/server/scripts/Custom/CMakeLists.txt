@@ -19,6 +19,7 @@ set(scripts_STAT_SRCS
   Custom/Transmogrifier.cpp
   Custom/Duel_Reset.cpp
   Custom/XpWeekend.cpp
+  Custom/Mount_At_Lvl_Script.cpp
 )
 
 message("  -> Prepared: Custom")

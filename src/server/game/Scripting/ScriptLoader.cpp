@@ -95,6 +95,7 @@ void AddSC_achievement_scripts();
 void AddSC_CPWS_Transmogrification();
 void AddSC_Duel_Reset();
 void AddSC_XpWeekend();
+void AddSC_Mount_At_Lvl_Script();
 
 //events
 void AddSC_event_brewfest_scripts();
@@ -1259,6 +1260,7 @@ void AddCustomScripts()
 	AddSC_CPWS_Transmogrification();
 	AddSC_Duel_Reset();
 	AddSC_XpWeekend();
+	AddSC_Mount_At_Lvl_Script();
 
 #endif
 }
