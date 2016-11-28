@@ -124,7 +124,7 @@ public:
         uint32 avgUpdateTime = avgDiffTracker.getAverage();
 		
 		//Информация о сервере
-		handler->PSendSysMessage("|cffFF0000 UlduarCore rev. 0.16 Unix Release.");
+		handler->PSendSysMessage("|cffFF0000 NeltharionCore rev. 0.16 Unix Release.");
 		if (!queuedSessionCount)
 			handler->PSendSysMessage("|cff0026FF Подключенные игроки: %u. Персонажей в мире: %u.", activeSessionCount, playerCount);
 		else
@@ -132,7 +132,7 @@ public:
 			handler->PSendSysMessage("|cff0026FF Максимум соединений за сессию: %u.", connPeak);
 			handler->PSendSysMessage("|cff0026FF Время обновления diff: %ums, средний: %ums.", updateTime, avgUpdateTime);
 			handler->PSendSysMessage(LANG_UPTIME, uptime.c_str());
-			handler->PSendSysMessage("|cff0026FF Ядро обновлено: 02.10.2016");
+			handler->PSendSysMessage("|cff0026FF Ядро обновлено: 28.11.2016");
 
 		if (handler->GetSession())
 			if (Player* p = handler->GetSession()->GetPlayer())
@@ -141,7 +141,7 @@ public:
 		
 		//Информация о акциах
 		handler->PSendSysMessage(" ");
-		handler->PSendSysMessage("|cff3DAEFF  ***** Доступные акции на сервере *****");
+		handler->PSendSysMessage("|cff3DAEFF  ********* Доступные акции на сервере *********");
 		boost::gregorian::date date(boost::gregorian::day_clock::local_day());
 		
 		double day = date.day_of_week();
@@ -152,11 +152,9 @@ public:
         handler->PSendSysMessage("  |cff4CFF00 Акция, выходные дни удвоен XP.");
         }
 		
-		handler->PSendSysMessage("  |cff4CFF00 Акция, Быстрый старт 70 уровень.");
 		handler->PSendSysMessage("  |cff4CFF00 Акция, Увеличены бонусы за игру до 31.10");
-		handler->PSendSysMessage("  |cff4CFF00 Акция, КД на рейды один день.");
 		handler->PSendSysMessage("  |cff4CFF00 Акция, Занижения элиты на 50 процентов.");
-		handler->PSendSysMessage("|cff3DAEFF  **********************************************");
+		handler->PSendSysMessage("|cff3DAEFF  ********************************************************");
 		
         //! Can't use sWorld->ShutdownMsg here in case of console command
         if (sWorld->IsShuttingDown())
