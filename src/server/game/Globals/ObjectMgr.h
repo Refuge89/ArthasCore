@@ -1061,6 +1061,13 @@ class ObjectMgr
             return &itr->second;
         }
 		
+		GameObjectLocale const* GetGameObjectLocale(uint32 entry) const
+        {
+            GameObjectLocaleContainer::const_iterator itr = _gameObjectLocaleStore.find(entry);
+            if (itr == _gameObjectLocaleStore.end()) return NULL;
+            return &itr->second;
+        }
+		
 		ItemLocale const* GetItemLocale(uint32 entry) const
         {
             ItemLocaleContainer::const_iterator itr = _itemLocaleStore.find(entry);
