@@ -1068,6 +1068,13 @@ class ObjectMgr
             return &itr->second;
         }
 		
+		CreatureLocale const* GetCreatureLocale(uint32 entry) const
+        {
+            CreatureLocaleContainer::const_iterator itr = _creatureLocaleStore.find(entry);
+            if (itr == _creatureLocaleStore.end()) return NULL;
+            return &itr->second;
+        }
+		
 		ItemLocale const* GetItemLocale(uint32 entry) const
         {
             ItemLocaleContainer::const_iterator itr = _itemLocaleStore.find(entry);
