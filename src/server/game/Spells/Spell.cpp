@@ -60,6 +60,145 @@
 #include "GameObjectAI.h"
 #include "ArenaSpectator.h"
 
+#include "Player.h"
+#include "AccountMgr.h"
+#include "AchievementMgr.h"
+#include "AnticheatMgr.h"
+#include "ArenaTeam.h"
+#include "ArenaTeamMgr.h"
+#include "Battlefield.h"
+#include "BattlefieldMgr.h"
+#include "BattlefieldWG.h"
+#include "Battleground.h"
+#include "BattlegroundAV.h"
+#include "BattlegroundMgr.h"
+#include "CellImpl.h"
+#include "Channel.h"
+#include "ChannelMgr.h"
+#include "CharacterDatabaseCleaner.h"
+#include "Chat.h"
+#include "Common.h"
+#include "ConditionMgr.h"
+#include "CreatureAI.h"
+#include "DatabaseEnv.h"
+#include "DisableMgr.h"
+#include "Formulas.h"
+#include "GameEventMgr.h"
+#include "GossipDef.h"
+#include "GridNotifiers.h"
+#include "GridNotifiersImpl.h"
+#include "Group.h"
+#include "GroupMgr.h"
+#include "Guild.h"
+#include "GuildMgr.h"
+#include "InstanceSaveMgr.h"
+#include "InstanceScript.h"
+#include "Language.h"
+#include "LFGMgr.h"
+#include "Log.h"
+#include "LootItemStorage.h"
+#include "MapInstanced.h"
+#include "MapManager.h"
+#include "ObjectAccessor.h"
+#include "ObjectMgr.h"
+#include "Opcodes.h"
+#include "OutdoorPvP.h"
+#include "OutdoorPvPMgr.h"
+#include "Pet.h"
+#include "PetitionMgr.h"
+#include "QuestDef.h"
+#include "ReputationMgr.h"
+#include "SkillDiscovery.h"
+#include "SocialMgr.h"
+#include "Spell.h"
+#include "SpellAuraEffects.h"
+#include "SpellAuras.h"
+#include "SpellMgr.h"
+#include "Transport.h"
+#include "UpdateData.h"
+#include "UpdateFieldFlags.h"
+#include "UpdateMask.h"
+#include "Util.h"
+#include "Vehicle.h"
+#include "Weather.h"
+#include "WeatherMgr.h"
+#include "World.h"
+#include "WorldPacket.h"
+#include "WorldSession.h"
+#include "ArenaSpectator.h"
+#include "GameObjectAI.h"
+#include "PoolMgr.h"
+#include "SavingSystem.h"
+#include "../Custom/Transmogrification.h"
+
+#include "Common.h"
+#include "DatabaseEnv.h"
+#include "Config.h"
+#include "SystemConfig.h"
+#include "Log.h"
+#include "Opcodes.h"
+#include "WorldSession.h"
+#include "WorldPacket.h"
+#include "Player.h"
+#include "Vehicle.h"
+#include "SkillExtraItems.h"
+#include "SkillDiscovery.h"
+#include "World.h"
+#include "AccountMgr.h"
+#include "AchievementMgr.h"
+#include "AuctionHouseMgr.h"
+#include "ObjectMgr.h"
+#include "ArenaTeamMgr.h"
+#include "GuildMgr.h"
+#include "TicketMgr.h"
+#include "SpellMgr.h"
+#include "GroupMgr.h"
+#include "Chat.h"
+#include "DBCStores.h"
+#include "LootMgr.h"
+#include "ItemEnchantmentMgr.h"
+#include "MapManager.h"
+#include "CreatureAIRegistry.h"
+#include "BattlegroundMgr.h"
+#include "BattlefieldMgr.h"
+#include "OutdoorPvPMgr.h"
+#include "TemporarySummon.h"
+#include "WaypointMovementGenerator.h"
+#include "VMapFactory.h"
+#include "MMapFactory.h"
+#include "GameEventMgr.h"
+#include "PoolMgr.h"
+#include "GridNotifiersImpl.h"
+#include "CellImpl.h"
+#include "InstanceSaveMgr.h"
+#include "Util.h"
+#include "Language.h"
+#include "CreatureGroups.h"
+#include "Transport.h"
+#include "ScriptMgr.h"
+#include "AddonMgr.h"
+#include "LFGMgr.h"
+#include "ConditionMgr.h"
+#include "DisableMgr.h"
+#include "CharacterDatabaseCleaner.h"
+#include "ScriptMgr.h"
+#include "WeatherMgr.h"
+#include "CreatureTextMgr.h"
+#include "SmartAI.h"
+#include "Channel.h"
+#include "ChannelMgr.h"
+#include "WardenCheckMgr.h"
+#include "Warden.h"
+#include "CalendarMgr.h"
+#include "PetitionMgr.h"
+#include "LootItemStorage.h"
+#include "TransportMgr.h"
+#include "AvgDiffTracker.h"
+#include "DynamicVisibility.h"
+#include "WhoListCache.h"
+#include "AsyncAuctionListing.h"
+#include "SavingSystem.h"
+
 extern pEffect SpellEffects[TOTAL_SPELL_EFFECTS];
 
 SpellDestination::SpellDestination()
@@ -3092,9 +3231,12 @@ bool Spell::UpdateChanneledTargetList()
     return channelTargetEffectMask == 0;
 }
 
-
 void Spell::prepare(SpellCastTargets const* targets, AuraEffect const* triggeredByAura)
-{
+{    
+    // if config enable and spell used hearthstone
+    if (sConfigMgr->GetBoolDefault("HearthstoneSpell.Toggle", false) && m_spellInfo->Id == 8690)
+        m_casttime = sConfigMgr->GetIntDefault("HearthstoneSpell.CastTime", 10000);
+	
     if (m_CastItem)
         m_castItemGUID = m_CastItem->GetGUID();
     else
@@ -3347,6 +3489,9 @@ void Spell::cast(bool skipCheck)
 
 	if (lastMod)
 		modOwner->SetSpellModTakingSpell(lastMod, true);
+	
+	if (m_spellInfo->Id == 8690 && sConfigMgr->GetBoolDefault("HearthstoneSpell.Toggle", false) && sConfigMgr->GetBoolDefault("HearthstoneSpell.NoCD", false))
+        m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);	
 }
 
 void Spell::_cast(bool skipCheck)
@@ -3414,6 +3559,7 @@ void Spell::_cast(bool skipCheck)
             SendInterrupted(0);
 
             finish(false);
+			
             SetExecutedCurrently(false);
             return;
         }
@@ -3960,7 +4106,7 @@ void Spell::finish(bool ok)
         {
 			bool allow = true;
 			if (m_casttime == 0 && m_spellInfo->CalcCastTime())
-				allow = false;
+				allow = false; 
 
 			if (allow)
 			{
@@ -8208,6 +8354,10 @@ void Spell::TriggerGlobalCooldown()
 		else
 			return;
 	}
+	
+	if (m_caster->GetTypeId() == TYPEID_PLAYER)
+    if (m_spellInfo->Id == 8690 && sConfigMgr->GetBoolDefault("HearthstoneSpell.Toggle", false) && sConfigMgr->GetBoolDefault("HearthstoneSpell.NoCD", false))
+            return;
 
     // Global cooldown can't leave range 1..1.5 secs
     // There are some spells (mostly not casted directly by player) that have < 1 sec and > 1.5 sec global cooldowns
