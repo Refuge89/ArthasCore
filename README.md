@@ -1,2 +1,2 @@
-# SunWellCore
-This is lite distribution of SunWellCore. (Sunwell.pl)
+# LunaCore
+This is lite distribution of LunaCore. (neltharion.ru)
