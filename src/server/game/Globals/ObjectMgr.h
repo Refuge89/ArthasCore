@@ -1089,6 +1089,13 @@ class ObjectMgr
             return &itr->second;
         }
 		
+		QuestLocale const* GetQuestLocale(uint32 entry) const
+		{
+			QuestLocaleContainer::const_iterator itr = _questLocaleStore.find(entry);
+			if (itr == _questLocaleStore.end()) return NULL;
+			return &itr->second;
+		}
+		
 		PageTextLocale const* GetPageTextLocale(uint32 entry) const
         {
             PageTextLocaleContainer::const_iterator itr = _pageTextLocaleStore.find(entry);
