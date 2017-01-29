@@ -2135,8 +2135,8 @@ public:
             int32 muteTime = -int32(notSpeakTime * MINUTE);
             stmt->setInt64(0, muteTime);
         }
-
-        stmt->setString(1, muteReasonStr.c_str());
+		
+		stmt->setString(1, muteReasonStr.c_str());
         stmt->setString(2, muteBy.c_str());
         stmt->setUInt32(3, accountId);
         LoginDatabase.Execute(stmt);

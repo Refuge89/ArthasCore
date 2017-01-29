@@ -1149,12 +1149,26 @@ class ObjectMgr
 			return &itr->second;
 		}
 		
+		NpcTextLocale const* GetNpcTextLocale(uint32 entry) const
+		{
+			NpcTextLocaleContainer::const_iterator itr = _npcTextLocaleStore.find(entry);
+			if (itr == _npcTextLocaleStore.end()) return NULL;
+			return &itr->second;
+		}
+		
 		PageTextLocale const* GetPageTextLocale(uint32 entry) const
         {
             PageTextLocaleContainer::const_iterator itr = _pageTextLocaleStore.find(entry);
             if (itr == _pageTextLocaleStore.end()) return NULL;
             return &itr->second;
         }
+		
+		GossipMenuItemsLocale const* GetGossipMenuItemsLocale(uint32 entry) const
+	    {
+			GossipMenuItemsLocaleContainer::const_iterator itr = _gossipMenuItemsLocaleStore.find(entry);
+			if (itr == _gossipMenuItemsLocaleStore.end()) return NULL;
+			return &itr->second;
+		}
 		
 		PointOfInterestLocale const* GetPointOfInterestLocale(uint32 poi_id) const
         {
