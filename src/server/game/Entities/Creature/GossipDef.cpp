@@ -546,27 +546,11 @@ void PlayerMenu::SendQuestQueryResponse(Quest const* quest) const
  
 void PlayerMenu::SendQuestGiverOfferReward(Quest const* quest, uint64 npcGUID, bool enableNext) const
 {
-	std::string questTitle = quest->GetTitle();
-	std::string questOfferRewardText = quest->GetOfferRewardText();
-
-	int32 locale = _session->GetSessionDbLocaleIndex();
-	if (locale >= 0)
-	{
-		if (QuestLocale const* localeData = sObjectMgr->GetQuestLocale(quest->GetQuestId()))
-		{
-			ObjectMgr::GetLocaleString(localeData->Title, locale, questTitle);
-			ObjectMgr::GetLocaleString(localeData->OfferRewardText, locale, questOfferRewardText);
-		}
-	}
-}
-
-void PlayerMenu::SendQuestGiverOfferReward(Quest const* quest, uint64 npcGUID, bool enableNext) const
-{
     WorldPacket data(SMSG_QUESTGIVER_OFFER_REWARD, 400);    // guess size
     data << uint64(npcGUID);
     data << uint32(quest->GetQuestId());
-	data << questTitle;
-	data << questOfferRewardText;
+    data << quest->GetTitle();
+    data << quest->GetOfferRewardText();
 
     data << uint8(enableNext ? 1 : 0);                      // Auto Finish
     data << uint32(quest->GetFlags());                      // 3.3.3 questFlags
