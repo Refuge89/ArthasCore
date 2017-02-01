@@ -124,7 +124,7 @@ public:
         uint32 avgUpdateTime = avgDiffTracker.getAverage();
 		
 		//Информация о сервере
-		handler->PSendSysMessage("|cffFF0000 NeltharionCore rev 0.17 Unix 64bit Release.");
+		handler->PSendSysMessage("|cffFF0000 ArthasCore rev 0.2 Unix 64bit Release.");
 		if (!queuedSessionCount)
 			handler->PSendSysMessage("|cff0026FF Подключенные игроки: %u. Персонажей в мире: %u.", activeSessionCount, playerCount);
 		else
@@ -132,7 +132,7 @@ public:
 			handler->PSendSysMessage("|cff0026FF Максимум соединений за сессию: %u.", connPeak);
 			handler->PSendSysMessage("|cff0026FF Время обновления diff: %ums, средний: %ums.", updateTime, avgUpdateTime);
 			handler->PSendSysMessage(LANG_UPTIME, uptime.c_str());
-			handler->PSendSysMessage("|cff0026FF Обновлено: 02.12.2016");
+			handler->PSendSysMessage("|cff0026FF Обновлено: 05.02.2017");
 
 		if (handler->GetSession())
 			if (Player* p = handler->GetSession()->GetPlayer())
@@ -152,9 +152,7 @@ public:
         handler->PSendSysMessage("  |cff4CFF00 Акция, выходные дни удвоен XP.");
         }
 		
-		handler->PSendSysMessage("  |cff4CFF00 Акция, Увеличены бонусы за игру до 15.12");
-		handler->PSendSysMessage("  |cff4CFF00 Акция, открытые полеты до 15.12.");
-		handler->PSendSysMessage("  |cff4CFF00 Акция, Занижения элиты на 50 процентов.");
+		handler->PSendSysMessage("  |cff4CFF00 Акция, Увеличены бонусы за игру x2 до 03.03");
 		handler->PSendSysMessage("|cff3DAEFF  *******************************************************");
 		
         //! Can't use sWorld->ShutdownMsg here in case of console command
