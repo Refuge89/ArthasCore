@@ -1,8 +1,8 @@
 # output generic information about the core and buildtype chosen
 message("")
-message("* ArthasCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
+message("* AzerothCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
 if( UNIX )
-  message("* ArthasCore buildtype  : ${CMAKE_BUILD_TYPE}")
+  message("* AzerothCore buildtype  : ${CMAKE_BUILD_TYPE}")
 endif()
 message("")
 

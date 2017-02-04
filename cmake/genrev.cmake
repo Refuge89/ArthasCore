@@ -74,7 +74,7 @@ endif()
 # Create the actual revision.h file from the above params
 if(NOT "${rev_hash_cached}" MATCHES "${rev_hash}" OR NOT "${rev_branch_cached}" MATCHES "${rev_branch}" OR NOT EXISTS "${BUILDDIR}/revision.h")
   configure_file(
-    "${CMAKE_SOURCE_DIR}/src/cmake/revision.h.in.cmake"
+    "${CMAKE_SOURCE_DIR}/cmake/revision.h.in.cmake"
     "${BUILDDIR}/revision.h"
     @ONLY
   )

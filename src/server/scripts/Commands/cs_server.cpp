@@ -124,7 +124,7 @@ public:
         uint32 avgUpdateTime = avgDiffTracker.getAverage();
 		
 		//Информация о сервере
-		handler->PSendSysMessage("|cffFF0000 ArthasCore rev 0.2 Unix 64bit Release.");
+		handler->PSendSysMessage("%s", _FULLVERSION);
 		if (!queuedSessionCount)
 			handler->PSendSysMessage("|cff0026FF Подключенные игроки: %u. Персонажей в мире: %u.", activeSessionCount, playerCount);
 		else
