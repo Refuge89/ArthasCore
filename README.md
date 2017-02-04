@@ -9,15 +9,9 @@ ArthasCore is an open source game-server application for World of Warcraft, curr
 
 It is written in C++ and based on MaNGOS, ArthasCore, TrinityCore and SunwellCore.
 
-## Why ArthasCore?
-
-Our main goal is to create a playable game server, offering a fully working game experience. In short, we focus on the **user experience (UX)**.
-
-We also believe in [software modularity](https://en.wikipedia.org/wiki/Modular_programming), because the more the software is modular, and the more it will be easy to be maintained, understood, developed, etc... So we organized the structure of AzerothCore as modular as possible, giving the possibility to [create new modules](https://github.com/azerothcore/azerothcore-wotlk/wiki/Create-a-Module) to add custom features (instead of patching the core).
-
 ## Learning project
 
-AzerothCore is a learning project.
+ArthasCore is a learning project.
 If you want to learn how to use C++, SQL, git, etc... you came to the right place! We will gladly to help you: **programming is our passion**.
 
 If you want to contribute, in [our wiki](https://github.com/azerothcore/azerothcore-wotlk/wiki) you fill find a lot of resources that will guide you. Also you can poke us in [our gitter chat channel](https://gitter.im/azerothcore/azerothcore).
