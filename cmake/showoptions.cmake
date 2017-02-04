@@ -1,8 +1,8 @@
 # output generic information about the core and buildtype chosen
 message("")
-message("* SunwellCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
+message("* ArthasCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
 if( UNIX )
-  message("* SunwellCore buildtype  : ${CMAKE_BUILD_TYPE}")
+  message("* ArthasCore buildtype  : ${CMAKE_BUILD_TYPE}")
 endif()
 message("")
 
@@ -11,8 +11,11 @@ message("")
 message("* Install core to        : ${CMAKE_INSTALL_PREFIX}")
 if( UNIX )
   message("* Install libraries to   : ${LIBSDIR}")
-  message("* Install configs to     : ${CONF_DIR}")
 endif()
+
+message("* Install configs to     : ${CONF_DIR}")
+add_definitions(-D_CONF_DIR="\\"${CONF_DIR}\\"")
+
 message("")
 
 # Show infomation about the options selected during configuration
