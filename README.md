@@ -1,14 +1,15 @@
-#![logo](http://arthas.ru/assets/images/logo.png) ArthasCore (master)
+#![logo](http://arthas.ru/assets/images/logo.png) 
+#ArthasCore(master)
 
 [![Gitter](https://badges.gitter.im/azerothcore/azerothcore.svg)](https://gitter.im/azerothcore/azerothcore?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=40032087)](https://www.bountysource.com/teams/azerothcore/bounties) [![Master Build Status](https://travis-ci.org/azerothcore/azerothcore-wotlk.svg)](https://travis-ci.org/azerothcore/azerothcore-wotlk)
 
 ## Introduction
 
-AzerothCore is an open source game-server application for World of Warcraft, currently supporting the 3.3.5a game version.
+ArthasCore is an open source game-server application for World of Warcraft, currently supporting the 3.3.5a game version.
 
-It is written in C++ and based on MaNGOS, TrinityCore and SunwellCore.
+It is written in C++ and based on MaNGOS, ArthasCore, TrinityCore and SunwellCore.
 
-## Why AzerothCore?
+## Why ArthasCore?
 
 Our main goal is to create a playable game server, offering a fully working game experience. In short, we focus on the **user experience (UX)**.
 
@@ -38,5 +39,5 @@ This project is brought to you thanks to:
 
 ## Links
 
-- [Website](https://azerothcore.github.io/)
+- [Website](https://github.com/ArthasCore/ArthasCore/)
                          
