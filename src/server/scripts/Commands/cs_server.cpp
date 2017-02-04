@@ -132,7 +132,6 @@ public:
 			handler->PSendSysMessage("|cff0026FF Максимум соединений за сессию: %u.", connPeak);
 			handler->PSendSysMessage("|cff0026FF Время обновления diff: %ums, средний: %ums.", updateTime, avgUpdateTime);
 			handler->PSendSysMessage(LANG_UPTIME, uptime.c_str());
-			handler->PSendSysMessage("|cff0026FF Обновлено: 05.02.2017");
 
 		if (handler->GetSession())
 			if (Player* p = handler->GetSession()->GetPlayer())
