@@ -1,1 +1,0 @@
-DELETE from spell_area where spell = 60815  and area = 14;
